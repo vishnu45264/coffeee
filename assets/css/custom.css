@@ -1,0 +1,193 @@
+/* Custom Navbar Font Styles */
+
+/* Change navbar brand (logo) font */
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo image styling */
+.navbar-logo {
+    height: 60px !important;
+    width: auto !important;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+    max-height: none !important;
+    min-height: 60px !important;
+    display: block;
+}
+
+body:not(.home-page) .navbar-scrolled .navbar-logo {
+    height: 45px !important; /* Slightly smaller on scroll */
+    min-height: 45px !important;
+}
+
+/* Change navbar links font */
+.navbar-nav .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Change dropdown menu font */
+.dropdown-item {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+}
+
+/* Auth button font */
+.auth-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+}
+
+/* Default navbar style for all pages */
+.navbar {
+    background-color: rgba(44, 30, 18, 0.95) !important; /* Solid background by default */
+    transition: all 0.5s ease;
+}
+
+/* Transparent navbar only for home page */
+body.home-page .navbar {
+    background-color: rgba(44, 30, 18, 0.2) !important; /* 80% transparency (0.2 alpha) */
+}
+
+/* When scrolled on home page, make navbar more opaque */
+body.home-page .navbar-scrolled {
+    background-color: rgba(44, 30, 18, 0.9) !important; /* More solid when scrolled */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1f1a17 !important; /* Darker brown to match cafe theme */
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+}
+
+footer .social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+footer .social-icon {
+    color: var(--accent-color);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+footer .social-icon:hover {
+    background-color: var(--accent-color);
+    color: #1f1a17;
+}
+
+footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 0.8rem 0;
+}
+
+footer .footer-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer .footer-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Enhanced Menu Item Styles */
+.menu-item {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item-img-container {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.menu-item-img {
+    height: 100% !important;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.8s ease;
+}
+
+.menu-item:hover .menu-item-img {
+    transform: scale(1.05);
+}
+
+.menu-item-content {
+    padding: 1.5rem;
+    background-color: white;
+    position: relative;
+}
+
+.menu-item-content h5 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    color: var(--dark-color);
+}
+
+.menu-item-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.menu-item-price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem !important;
+    color: var(--primary-color) !important;
+}
+
+/* Menu category filters styling */
+.menu-filters {
+    margin-bottom: 2rem;
+}
+
+.menu-filters .btn {
+    margin: 0 4px 8px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+/* Add scroll detection JavaScript */ 

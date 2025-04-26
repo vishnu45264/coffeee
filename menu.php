@@ -2,6 +2,38 @@
 $pageTitle = 'Menu';
 require_once 'include/header.php';
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+    $item_id = $_POST['item_id'];
+    $item_name = $_POST['item_name'];
+    $item_price = $_POST['item_price'];
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    // Check if item already in cart
+    if (isset($_SESSION['cart'][$item_id])) {
+        $_SESSION['cart'][$item_id]['quantity']++;
+    } else {
+        $_SESSION['cart'][$item_id] = [
+            'item_id' => $item_id,
+            'item_name' => $item_name,
+            'item_price' => $item_price,
+            'quantity' => 1
+        ];
+    }
+
+    // Optional: Flash message
+    $_SESSION['alert'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Item added to cart!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+
+    // Redirect to avoid form resubmission
+    header('Location: menu.php');
+    exit();
+}
+
 // Get categories for filter
 $categories = [];
 $sql = "SELECT DISTINCT category FROM menu_items WHERE active = 1 ORDER BY category";
@@ -40,7 +72,7 @@ if (!empty($category_filter)) {
     <!-- Category Filters -->
     <div class="row mb-4">
         <div class="col-12" data-aos="fade-up">
-            <div class="d-flex flex-wrap justify-content-center gap-2">
+            <div class="d-flex flex-wrap justify-content-center gap-2 menu-filters">
                 <a href="menu.php" class="btn <?php echo empty($category_filter) ? 'btn-primary' : 'btn-outline-primary'; ?>">All</a>
                 <?php foreach ($categories as $category): ?>
                     <a href="menu.php?category=<?php echo urlencode($category); ?>" 
@@ -60,16 +92,23 @@ if (!empty($category_filter)) {
                 ?>
                 <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
                     <div class="menu-item">
-                        <img src="assets/img/menu/<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>" class="menu-item-img">
+                        <div class="menu-item-img-container">
+                            <img src="assets/img/menu/<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>" class="menu-item-img">
+                        </div>
                         <div class="menu-item-content">
                             <h5><?php echo $item['name']; ?></h5>
                             <p class="text-muted"><?php echo $item['description']; ?></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="menu-item-price"><?php echo formatPrice($item['price']); ?></span>
                                 <?php if (isLoggedIn()): ?>
-                                    <a href="dashboard_user.php?order=<?php echo $item['id']; ?>" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-shopping-cart me-1"></i> Order
-                                    </a>
+                                    <form method="post" action="menu.php" class="d-inline">
+                                    <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
+                                    <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($item['name']); ?>">
+                                    <input type="hidden" name="item_price" value="<?php echo $item['price']; ?>">
+                                    <button type="submit" name="add_to_cart" class="btn btn-sm btn-success">
+                                        <i class="fas fa-plus"></i> Add to Cart
+                                    </button>
+                                </form>
                                 <?php else: ?>
                                     <a href="login.php" class="btn btn-sm btn-outline-primary">
                                         Login to Order

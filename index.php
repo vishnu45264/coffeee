@@ -8,8 +8,8 @@ require_once 'include/header.php';
     <div class="hero-overlay"></div>
     <div class="container">
         <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-title">Welcome to Coffee Cafe</h1>
-            <p class="hero-subtitle">Experience the finest coffee in town</p>
+            <h1 class="hero-title">Welcome to Cozy Cup</h1>
+            <p class="hero-subtitle">Where Every Sip Feels Like Home</p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="menu.php" class="btn btn-primary btn-lg">View Menu</a>
                 <a href="about.php" class="btn btn-outline-light btn-lg">About Us</a>
